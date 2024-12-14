@@ -1,54 +1,75 @@
 ﻿@model VoetbalEvents.Models.Wedstrijd
 
-@{
-    ViewData["Title"] = "Details";
-}
+<div class="container mt-4">
+    <!-- Terug naar de lijst -->
+    <a href="@Url.Action("Index", "Wedstrijds")" class="btn btn-secondary mb-3">← Terug naar de lijst</a>
 
-<h1>Details</h1>
+    <div class="row">
+        <!-- Afbeelding -->
+        <div class="col-md-12 text-center">
+            <img src="@Url.Content(Model.Foto ?? "/images/default-event.jpg")"
+                 alt="@Model.Naam afbeelding"
+                 class="img-fluid rounded shadow-sm mb-4"
+                 style="max-height: 400px; object-fit: cover;" />
+        </div>
+    </div>
 
-<div>
-    <h4>Wedstrijd</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Naam)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Naam)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Beschrijving)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Beschrijving)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Datum)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Datum)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MaxKaarten)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MaxKaarten)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Toeschouwers)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Toeschouwers)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Foto)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Foto)
-        </dd>
-    </dl>
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Titel -->
+            <h1 class="display-4 text-center">@Model.Naam</h1>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <!-- Informatie -->
+        <div class="col-md-8 offset-md-2">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <!-- Beschrijving -->
+                    <h5 class="card-title">Beschrijving</h5>
+                    <p class="card-text">
+                        @if (!string.IsNullOrEmpty(Model.Beschrijving))
+                        {
+                            @Model.Beschrijving
+                        }
+                        else
+                        {
+                            <em>Geen beschrijving beschikbaar.</em>
+                        }
+                    </p>
+
+                    <!-- Datum en tijd -->
+                    <p><strong>Datum en tijd:</strong> @Model.Datum.ToString("dd-MM-yyyy HH:mm")</p>
+
+                    <!-- Maximale en beschikbare kaarten -->
+                    <p><strong>Maximale kaarten:</strong> @Model.MaxKaarten</p>
+                    <p><strong>Beschikbare kaarten:</strong> @Model.MaxKaarten - @Model.Toeschouwers</p>
+
+                    <!-- Huidige toeschouwers -->
+                    <p><strong>Huidige toeschouwers:</strong> @Model.Toeschouwers</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bewerken en Verwijderen (alleen zichtbaar voor Admin) -->
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="row mt-4">
+            <div class="col-md-12 text-center">
+                <a href="@Url.Action("Edit", "Wedstrijds", new { id = Model.WedstrijdID })" class="btn btn-warning">Bewerken</a>
+                <a href="@Url.Action("Delete", "Wedstrijds", new { id = Model.WedstrijdID })" class="btn btn-danger">Verwijderen</a>
+            </div>
+        </div>
+    }
+
+    <!-- Tickets -->
+    <div class="row mt-4">
+        <div class="col-md-12 text-center">
+            <a href="@Url.Action("Index", "Reserveringen", new { wedstrijdId = Model.WedstrijdID })" class="btn btn-primary">Bekijk Tickets</a>
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.WedstrijdID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+

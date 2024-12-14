@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -44,16 +45,18 @@ namespace VoetbalEvents.Controllers
         }
 
         // GET: Wedstrijds/Create
+        // Alleen zichtbaar voor geauthenticeerde Admin gebruikers
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
         }
 
         // POST: Wedstrijds/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // Alleen zichtbaar voor geauthenticeerde Admin gebruikers
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("WedstrijdID,Naam,Beschrijving,Datum,MaxKaarten,Toeschouwers,Foto")] Wedstrijd wedstrijd)
         {
             if (ModelState.IsValid)
@@ -66,6 +69,8 @@ namespace VoetbalEvents.Controllers
         }
 
         // GET: Wedstrijds/Edit/5
+        // Alleen zichtbaar voor geauthenticeerde Admin gebruikers
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -82,10 +87,10 @@ namespace VoetbalEvents.Controllers
         }
 
         // POST: Wedstrijds/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // Alleen zichtbaar voor geauthenticeerde Admin gebruikers
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("WedstrijdID,Naam,Beschrijving,Datum,MaxKaarten,Toeschouwers,Foto")] Wedstrijd wedstrijd)
         {
             if (id != wedstrijd.WedstrijdID)
@@ -117,6 +122,8 @@ namespace VoetbalEvents.Controllers
         }
 
         // GET: Wedstrijds/Delete/5
+        // Alleen zichtbaar voor geauthenticeerde Admin gebruikers
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -135,8 +142,10 @@ namespace VoetbalEvents.Controllers
         }
 
         // POST: Wedstrijds/Delete/5
+        // Alleen zichtbaar voor geauthenticeerde Admin gebruikers
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var wedstrijd = await _context.Wedstrijds.FindAsync(id);
