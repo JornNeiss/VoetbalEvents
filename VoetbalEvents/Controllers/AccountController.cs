@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using VoetbalEvents.Models; // Verwijzing naar je ViewModels
+using VoetbalEvents.Models;
 
 namespace VoetbalEvents.Controllers
 {
