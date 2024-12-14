@@ -1,0 +1,17 @@
+﻿@model VoetbalEvents.Models.LoginViewModel
+
+<h2>Inloggen</h2>
+<form asp-action="Login" method="post">
+    <label asp-for="Email"></label>
+    <input asp-for="Email" />
+    <span asp-validation-for="Email"></span>
+
+    <label asp-for="Password"></label>
+    <input asp-for="Password" type="password" />
+    <span asp-validation-for="Password"></span>
+
+    <label asp-for="RememberMe"></label>
+    <input asp-for="RememberMe" type="checkbox" /> Onthoud mij
+
+    <button type="submit">Inloggen</button>
+</form>
