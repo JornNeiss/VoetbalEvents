@@ -64,12 +64,11 @@
         </div>
     }
 
-    <!-- Tickets -->
+    <!--  Tickets reserveren -->
     <div class="row mt-4">
         <div class="col-md-12 text-center">
-            <a href="@Url.Action("Index", "Reserveringen", new { wedstrijdId = Model.WedstrijdID })" class="btn btn-primary">Bekijk Tickets</a>
+            <a href="@Url.Action("Create", "Reserverings", new { wedstrijdId = Model.WedstrijdID })" class="btn btn-primary">Reserveer nu tickets</a>
         </div>
     </div>
-</div>
 
 

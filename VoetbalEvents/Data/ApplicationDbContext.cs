@@ -27,7 +27,7 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
             .WithMany(ev => ev.reserverings)
             .HasForeignKey(e => e.WedstrijdID);
 
-        // Seed data for Events
+        // Seed data for wedstrijden
         modelBuilder.Entity<Wedstrijd>().HasData(
             new Wedstrijd
             {

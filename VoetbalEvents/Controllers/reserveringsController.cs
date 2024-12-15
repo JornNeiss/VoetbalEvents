@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -46,25 +45,35 @@ namespace VoetbalEvents.Controllers
         }
 
         // GET: reserverings/Create
-        public IActionResult Create()
+        public IActionResult Create(int wedstrijdId)
         {
+            // Haal alle wedstrijden op voor de dropdown
             ViewData["WedstrijdID"] = new SelectList(_context.Wedstrijds, "WedstrijdID", "Naam");
-            return View();
+
+            // Maak een nieuw reservering object en zet het wedstrijdId
+            var model = new reservering
+            {
+                WedstrijdID = wedstrijdId
+            };
+
+            // Toon de create view met het model
+            return View(model);
         }
 
         // POST: reserverings/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ReserveringID,Datum,WedstrijdID")] reservering reservering)
         {
             if (ModelState.IsValid)
             {
+                // Voeg de nieuwe reservering toe aan de database
                 _context.Add(reservering);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");  // Redirect naar de Home pagina of een andere gewenste pagina
             }
+
+            // Als de validatie niet slaagt, herlaad de view met het huidige model
             ViewData["WedstrijdID"] = new SelectList(_context.Wedstrijds, "WedstrijdID", "Naam", reservering.WedstrijdID);
             return View(reservering);
         }
@@ -87,8 +96,6 @@ namespace VoetbalEvents.Controllers
         }
 
         // POST: reserverings/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ReserveringID,Datum,WedstrijdID")] reservering reservering)
@@ -162,3 +169,5 @@ namespace VoetbalEvents.Controllers
         }
     }
 }
+
+

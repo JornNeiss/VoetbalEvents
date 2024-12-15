@@ -9,8 +9,8 @@ namespace VoetbalEvents.Models
         public int ReserveringID { get; set; }
 
         [Required]
-        public DateTime Datum { get; set; }        
-
+        public DateTime Datum { get; set; }   
+        
         [ForeignKey("Wedstrijd")]
         public int WedstrijdID { get; set; } // Foreign key naar Wedstrijd
         public Wedstrijd Wedstrijd { get; set; } // Navigatie naar Wedstrijd
