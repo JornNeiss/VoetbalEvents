@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace VoetbalEvents.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -201,9 +201,9 @@ namespace VoetbalEvents.Migrations
                 columns: new[] { "WedstrijdID", "Beschrijving", "Datum", "Foto", "MaxKaarten", "Naam", "Toeschouwers" },
                 values: new object[,]
                 {
-                    { 1, "De limburgse derby tussen Roda jc Kerkrade en MVV Maastricht", new DateTime(2025, 1, 14, 0, 22, 50, 425, DateTimeKind.Local).AddTicks(2564), "/images/RJC.jpg", 2000, "Roda JC - MVV Maastricht", 0 },
-                    { 2, "De degradatie kraker in de 3. Bundesliga tussen Alemannia Aachen en RW Essen", new DateTime(2025, 1, 15, 0, 22, 50, 425, DateTimeKind.Local).AddTicks(2613), "/images/Alemannia.jpg", 1400, "Alemania Aachen - RW Essen", 0 },
-                    { 3, "De wedstrijd tussen de 2 italiaanse groot machten: AC Milan en Napoli", new DateTime(2025, 2, 13, 0, 22, 50, 425, DateTimeKind.Local).AddTicks(2616), "/images/ACMilan.jpg", 700, "AC Milan - Napoli", 0 }
+                    { 1, "De limburgse derby tussen Roda jc Kerkrade en MVV Maastricht", new DateTime(2025, 1, 15, 4, 56, 55, 351, DateTimeKind.Local).AddTicks(9009), "/images/RJC.jpg", 2000, "Roda JC - MVV Maastricht", 0 },
+                    { 2, "De degradatie kraker in de 3. Bundesliga tussen Alemannia Aachen en RW Essen", new DateTime(2025, 1, 16, 4, 56, 55, 351, DateTimeKind.Local).AddTicks(9058), "/images/Alemannia.jpg", 1400, "Alemania Aachen - RW Essen", 0 },
+                    { 3, "De wedstrijd tussen de 2 italiaanse groot machten: AC Milan en Napoli", new DateTime(2025, 2, 14, 4, 56, 55, 351, DateTimeKind.Local).AddTicks(9060), "/images/ACMilan.jpg", 700, "AC Milan - Napoli", 0 }
                 });
 
             migrationBuilder.InsertData(

@@ -10,20 +10,13 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create" method="post">
+        <form asp-action="Create" method="post" id="reserveringForm">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-            <!-- Datum invoeren -->
-            <div class="form-group">
-                <label asp-for="Datum" class="control-label"></label>
-                <input asp-for="Datum" class="form-control" />
-                <span asp-validation-for="Datum" class="text-danger"></span>
-            </div>
 
             <!-- Wedstrijd selecteren -->
             <div class="form-group">
                 <label asp-for="WedstrijdID" class="control-label"></label>
-                <select asp-for="WedstrijdID" class="form-control" asp-items="ViewBag.WedstrijdID">
+                <select asp-for="WedstrijdID" class="form-control" asp-items="ViewBag.WedstrijdID" id="wedstrijdSelect">
                     <option value="">Selecteer een wedstrijd</option> <!-- Optie voor geen selectie -->
                 </select>
             </div>
@@ -36,8 +29,54 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Terug naar lijst</a>
+<!-- Melding -->
+<div id="melding" class="alert alert-success mt-3 d-none" role="alert">
+    <!-- Dynamische melding wordt hier geplaatst -->
 </div>
 
+<div>
+    <a asp-controller="Wedstrijds"asp-action="Index">Terug naar de lijst van wedstrijden</a>
+</div>
 
+@section Scripts {
+    <script>
+        document.getElementById('reserveringForm').addEventListener('submit', function (event) {
+            // Voorkom standaard verzending tijdelijk voor de melding (optioneel, voor demo)
+            const selectElement = document.getElementById('wedstrijdSelect');
+            const wedstrijdNaam = selectElement.options[selectElement.selectedIndex].text;
+            const wedstrijdID = selectElement.value;
+
+            if (wedstrijdID) {
+                // Toon de melding
+                const meldingElement = document.getElementById('melding');
+                meldingElement.textContent = `Aangemeld voor wedstrijd: ${wedstrijdNaam}`;
+                meldingElement.classList.remove('d-none');
+            } else {
+                // Voorkom dat het formulier wordt verzonden zonder selectie
+                alert('Selecteer een wedstrijd om verder te gaan!');
+                event.preventDefault();
+            }
+        });
+    </script>
+    @{
+        // Controleer of er een melding is
+        var successMessage = TempData["SuccessMessage"];
+        var errorMessage = TempData["ErrorMessage"];
+    }
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+}

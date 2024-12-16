@@ -264,7 +264,7 @@ namespace VoetbalEvents.Migrations
                         {
                             WedstrijdID = 1,
                             Beschrijving = "De limburgse derby tussen Roda jc Kerkrade en MVV Maastricht",
-                            Datum = new DateTime(2025, 1, 14, 0, 22, 50, 425, DateTimeKind.Local).AddTicks(2564),
+                            Datum = new DateTime(2025, 1, 15, 4, 56, 55, 351, DateTimeKind.Local).AddTicks(9009),
                             Foto = "/images/RJC.jpg",
                             MaxKaarten = 2000,
                             Naam = "Roda JC - MVV Maastricht",
@@ -274,7 +274,7 @@ namespace VoetbalEvents.Migrations
                         {
                             WedstrijdID = 2,
                             Beschrijving = "De degradatie kraker in de 3. Bundesliga tussen Alemannia Aachen en RW Essen",
-                            Datum = new DateTime(2025, 1, 15, 0, 22, 50, 425, DateTimeKind.Local).AddTicks(2613),
+                            Datum = new DateTime(2025, 1, 16, 4, 56, 55, 351, DateTimeKind.Local).AddTicks(9058),
                             Foto = "/images/Alemannia.jpg",
                             MaxKaarten = 1400,
                             Naam = "Alemania Aachen - RW Essen",
@@ -284,7 +284,7 @@ namespace VoetbalEvents.Migrations
                         {
                             WedstrijdID = 3,
                             Beschrijving = "De wedstrijd tussen de 2 italiaanse groot machten: AC Milan en Napoli",
-                            Datum = new DateTime(2025, 2, 13, 0, 22, 50, 425, DateTimeKind.Local).AddTicks(2616),
+                            Datum = new DateTime(2025, 2, 14, 4, 56, 55, 351, DateTimeKind.Local).AddTicks(9060),
                             Foto = "/images/ACMilan.jpg",
                             MaxKaarten = 700,
                             Naam = "AC Milan - Napoli",
