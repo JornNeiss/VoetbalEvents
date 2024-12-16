@@ -29,7 +29,7 @@ namespace VoetbalEvents.Models
         [NotMapped]
         public int BeschikbareKaarten => MaxKaarten - Toeschouwers;
 
-        public List<reservering> reserverings { get; set; } = new List<reservering>(); 
+        public List<reservering> reserverings { get; set; } = new List<reservering>();
 
         [StringLength(200)]
         public string? Foto { get; set; }
